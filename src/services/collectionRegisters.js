@@ -1,5 +1,3 @@
-// services/collectionRegisters.js
-
 import {
   getFirestore,
   collection,
@@ -12,12 +10,12 @@ import {
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
-  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_APP_ID,
+  apiKey: "AIzaSyBfs53WvydMadA6j20dQ4MmxbNYzgkaWX4",
+  authDomain: "entrega-final-react-173ab.firebaseapp.com",
+  projectId: "entrega-final-react-173ab",
+  storageBucket: "entrega-final-react-173ab.appspot.com",
+  messagingSenderId: "583193565184",
+  appId: "1:583193565184:web:143728db6170c3d00460e5",
 };
 
 const app = initializeApp(firebaseConfig);

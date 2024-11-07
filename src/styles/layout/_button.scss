@@ -1,5 +1,4 @@
 %btn {
-  max-width: 10px;
   padding: 4px 16px;
   color: #ffffff;
   border-radius: 0.5rem;
@@ -27,4 +26,25 @@
     @extend %btn;
     background-color: #000000;
   }
+
+  .btn-add {
+    @extend %btn;
+    background-color: greenyellow;
+    margin-left: 2rem;
+    padding: 0 2rem;
+    justify-self: center;
+  }
+}
+
+.cart-info-b {
+  grid-column: 2 / 3; // Se asegura que esté en la segunda columna
+  @extend %card-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; // Alinea el contenido a la izquierda
+  border: #d5d8dc 0.5px solid;
+  border-radius: 1rem;
+  -webkit-box-shadow: 9px 9px 10px -7px rgba(28, 40, 51, 1);
+  -moz-box-shadow: 9px 9px 10px -7px rgba(28, 40, 51, 1);
+  box-shadow: 9px 9px 10px -7px rgba(28, 40, 51, 1);
 }

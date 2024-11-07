@@ -1,13 +1,15 @@
-// components/ItemDetailContainer.jsx
-import { useState, useEffect } from "react";
+// ItemDetailContainer.jsx
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Button from "./Button";
 import StockCount from "./StockCount";
 import Loading from "./Loading";
 import { getProductById } from "../services/collectionRegisters";
+import { CartContext } from "../context/CartProvider"; // Importar el contexto
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
+  const { addToCart } = useContext(CartContext); // Acceder a addToCart desde el contexto
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [count, setCount] = useState(0);
@@ -31,6 +33,12 @@ export default function ItemDetailContainer() {
     setCount(newCount);
   };
 
+  const handleAddToCart = (quantity) => {
+    if (product && quantity > 0) {
+      addToCart(product, quantity); // Llama a addToCart del contexto con el producto y la cantidad
+    }
+  };
+
   return (
     <div className="card-grid_detail">
       {loading ? (
@@ -44,7 +52,10 @@ export default function ItemDetailContainer() {
             <h2>{product.title}</h2>
             <h3>Precio: ${product.price}</h3>
             <p>{product.description}</p>
-            <Button onCountChange={handleCountChange} />
+            <Button
+              onCountChange={handleCountChange}
+              onAddToCart={handleAddToCart}
+            />
             <StockCount initialStock={product.stock} count={count} />
           </div>
         </div>

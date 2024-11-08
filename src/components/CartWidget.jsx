@@ -1,3 +1,4 @@
+// CartWidget.jsx
 import { IoBagHandleOutline } from "react-icons/io5";
 import { useCart } from "../context/CartProvider";
 import { Link } from "react-router-dom";

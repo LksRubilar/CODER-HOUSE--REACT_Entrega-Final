@@ -1,26 +1,29 @@
-// CartContext.js o CartProvider.jsx
-import { createContext, useState } from "react";
+// CartProvider.jsx
+import { createContext, useContext, useState } from "react";
 
 export const CartContext = createContext();
 
+export const useCart = () => {
+  return useContext(CartContext); // Hook personalizado para acceder al contexto
+};
+
 const CartProvider = ({ children }) => {
-  // Remueve `export` aquí
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (product, quantity) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
       if (existingItem) {
-        return prevItems.map((item) =>
+        const updatedItems = prevItems.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
+            ? { ...item, quantity: Math.max(item.quantity + quantity, 0) }
             : item
         );
+        return updatedItems.filter((item) => item.quantity > 0);
       } else {
         return [...prevItems, { ...product, quantity }];
       }
     });
-    console.log(cartItems);
   };
 
   return (
@@ -30,4 +33,4 @@ const CartProvider = ({ children }) => {
   );
 };
 
-export default CartProvider; // Exportación por defecto
+export default CartProvider;

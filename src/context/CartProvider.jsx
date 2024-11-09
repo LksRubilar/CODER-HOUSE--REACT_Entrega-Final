@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 export const CartContext = createContext();
 
 export const useCart = () => {
-  return useContext(CartContext); // Hook personalizado para acceder al contexto
+  return useContext(CartContext);
 };
 
 const CartProvider = ({ children }) => {
@@ -26,8 +26,22 @@ const CartProvider = ({ children }) => {
     });
   };
 
+  // Nueva función para eliminar un producto completamente del carrito
+  const removeFromCart = (productId) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.id !== productId)
+    );
+  };
+
+  // Nueva función para vaciar todo el carrito
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -108,9 +108,9 @@
 
 .final-order {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  .form {
-  }
+  grid-template-columns: 0.5fr 0.3fr;
+  margin-bottom: 3rem;
+  justify-content: center;
 
   .order-summary {
     background-color: #2c3642;
@@ -143,18 +143,22 @@
       width: 100%;
       margin-top: 3rem;
     }
-
-    .btn-clear {
-      @extend %btn;
-      background-color: #ffc300;
-      color: #000;
-    }
-
     .btn-goto {
       @extend %btn;
       color: #000;
       background-color: #4cbb10;
       font-size: 2rem;
     }
+  }
+}
+
+.clear-cart {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 10rem 0 0;
+  .btn-clear {
+    @extend %btn;
+    background-color: #ffc300;
+    color: #000;
   }
 }

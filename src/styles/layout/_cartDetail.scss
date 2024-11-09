@@ -147,12 +147,14 @@
     .btn-clear {
       @extend %btn;
       background-color: #ffc300;
+      color: #000;
     }
 
     .btn-goto {
       @extend %btn;
       color: #000;
       background-color: #4cbb10;
+      font-size: 2rem;
     }
   }
 }

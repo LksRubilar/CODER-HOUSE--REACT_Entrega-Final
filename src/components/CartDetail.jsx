@@ -2,6 +2,7 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartProvider";
 import { FaTrashAlt } from "react-icons/fa";
+import OrderForm from "./OrderForm";
 
 export default function CartDetail() {
   const {
@@ -81,6 +82,9 @@ export default function CartDetail() {
             </div>
           ))}
           <div className="final-order">
+            <div className="form-order">
+              <OrderForm />
+            </div>
             <div className="order-summary">
               <h2>Resumen de la compra</h2>
               <h3>

@@ -80,17 +80,22 @@ export default function CartDetail() {
               </div>
             </div>
           ))}
-          <div className="order-summary">
-            <h2>Resumen de la compra</h2>
-            <h3>
-              Total de Productos: <span>{totalProducts}</span>
-            </h3>
-            <h3>
-              Total de la Compra: <span>${totalPrice.toFixed(2)}</span>
-            </h3>
-            <button className="btn-clear" onClick={clearCart}>
-              Vaciar Carrito
-            </button>
+          <div className="final-order">
+            <div className="order-summary">
+              <h2>Resumen de la compra</h2>
+              <h3>
+                Total de Productos: <span>{totalProducts}</span>
+              </h3>
+              <h3>
+                Total de la Compra: <span>${totalPrice.toFixed(2)}</span>
+              </h3>
+              <div className="order-buttons">
+                <button className="btn-clear" onClick={clearCart}>
+                  Vaciar Carrito
+                </button>
+                <button className="btn-goto">Pagar</button>
+              </div>
+            </div>
           </div>
         </div>
       )}

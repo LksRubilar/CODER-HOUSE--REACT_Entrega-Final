@@ -1,17 +1,14 @@
-// CartDetail.jsx
 import { useContext } from "react";
 import { CartContext } from "../context/CartProvider";
 import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
 import OrderForm from "./OrderForm";
 
 export default function CartDetail() {
-  const {
-    cartItems,
-    addToCart,
-    updateCartItemQuantity,
-    removeFromCart,
-    clearCart,
-  } = useContext(CartContext);
+  const { cartItems, addToCart, removeFromCart, clearCart } =
+    useContext(CartContext);
+
+  const navigate = useNavigate(); // Hook para redirigir
 
   const handleAdd = (product) => {
     addToCart(product, 1);
@@ -35,6 +32,12 @@ export default function CartDetail() {
     (total, item) => total + item.quantity * item.price,
     0
   );
+
+  const goToCheckOut = () => {
+    navigate("/checkOut", {
+      state: { cartItems, totalProducts, totalPrice }, // Pasar los datos de la compra
+    });
+  };
 
   return (
     <div className="cart-detail">
@@ -94,7 +97,9 @@ export default function CartDetail() {
                 Total de la Compra: <span>${totalPrice.toFixed(2)}</span>
               </h3>
               <div className="order-buttons">
-                <button className="btn-goto">Generar Pedido</button>
+                <button className="btn-goto" onClick={goToCheckOut}>
+                  Generar Pedido
+                </button>
               </div>
             </div>
           </div>

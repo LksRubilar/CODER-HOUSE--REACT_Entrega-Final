@@ -111,7 +111,7 @@ export default function OrderForm() {
       </div>
 
       <button type="submit" className="submit-btn">
-        Enviar
+        Guardar
       </button>
     </form>
   );

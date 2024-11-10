@@ -1,13 +1,15 @@
-import { useContext } from "react";
+// CartDetail.jsx
+import { useContext, useState } from "react";
 import { CartContext } from "../context/CartProvider";
 import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; // Importar useNavigate
 import OrderForm from "./OrderForm";
+import { cargarOrden } from "../services/orderRegisters"; // Importar el servicio
 
 export default function CartDetail() {
   const { cartItems, addToCart, removeFromCart, clearCart } =
     useContext(CartContext);
-
+  const [orderData, setOrderData] = useState(null); // Estado para guardar los datos del formulario
   const navigate = useNavigate(); // Hook para redirigir
 
   const handleAdd = (product) => {
@@ -33,10 +35,25 @@ export default function CartDetail() {
     0
   );
 
-  const goToCheckOut = () => {
-    navigate("/checkOut", {
-      state: { cartItems, totalProducts, totalPrice }, // Pasar los datos de la compra
-    });
+  const handleOrderSubmit = async (formData) => {
+    const order = {
+      items: cartItems,
+      customerData: formData,
+      totalPrice,
+      totalProducts,
+      date: new Date(),
+    };
+
+    try {
+      // Registrar la orden en Firebase
+      const orderId = await cargarOrden(order);
+      console.log("Orden registrada con ID:", orderId);
+      navigate(`/checkOut/${orderId}`, {
+        state: { orderId, cartItems, totalProducts, totalPrice },
+      });
+    } catch (error) {
+      console.error("Error al registrar la orden:", error);
+    }
   };
 
   return (
@@ -86,7 +103,7 @@ export default function CartDetail() {
           </div>
           <div className="final-order">
             <div className="form-order">
-              <OrderForm />
+              <OrderForm onSubmit={handleOrderSubmit} />
             </div>
             <div className="order-summary">
               <h2>Resumen de la compra</h2>
@@ -96,11 +113,6 @@ export default function CartDetail() {
               <h3>
                 Total de la Compra: <span>${totalPrice.toFixed(2)}</span>
               </h3>
-              <div className="order-buttons">
-                <button className="btn-goto" onClick={goToCheckOut}>
-                  Generar Pedido
-                </button>
-              </div>
             </div>
           </div>
         </div>

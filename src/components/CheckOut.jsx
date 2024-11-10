@@ -1,8 +1,9 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 export default function CheckOut() {
   const location = useLocation();
   const { cartItems, totalProducts, totalPrice } = location.state || {};
+  const { orderId } = useParams();
 
   if (!cartItems) {
     return <p>No hay productos en la orden.</p>;
@@ -14,6 +15,7 @@ export default function CheckOut() {
       <div className="checkout-summary">
         <div className="summary-code">
           <h3 className="summary-subtt">Codigo del pedido: </h3>
+          <h3 className="summary-subtt">{orderId}</h3>
         </div>
 
         <div className="summary-total">

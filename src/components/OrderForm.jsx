@@ -1,8 +1,8 @@
 // OrderForm.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import "../styles/layout/_orderForm.scss";
 
-export default function OrderForm() {
+export default function OrderForm({ onSubmit }) {
   const [formData, setFormData] = useState({
     nombre: "",
     apellidos: "",
@@ -42,7 +42,7 @@ export default function OrderForm() {
       alert("Por favor, asegúrese de que los correos electrónicos coinciden.");
       return;
     }
-    console.log("Formulario enviado:", formData);
+    onSubmit(formData); // Enviar los datos del formulario a CartDetail
   };
 
   return (
@@ -111,7 +111,7 @@ export default function OrderForm() {
       </div>
 
       <button type="submit" className="submit-btn">
-        Guardar
+        Generar Pedido
       </button>
     </form>
   );

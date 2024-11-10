@@ -76,9 +76,7 @@ Para el almacenamiento y gestion de la informacion se utilizo **Firebase** como 
 
 1. **Crea un proyecto en Firebase**.
 
-   ```bash
-   [Firebase](https://console.firebase.google.com/)
-   ```
+   [Firebase](https://console.firebase.google.com/).
 
 2. **Instala Firebase**:
 

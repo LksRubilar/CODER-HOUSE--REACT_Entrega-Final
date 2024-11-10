@@ -21,7 +21,6 @@ Para el almacenamiento y gestion de la informacion se utilizo **Firebase** como 
 
    ```bash
    git clone https://github.com/LksRubilar/CODER-HOUSE--REACT_Entrega-Final.git
-   git checkout EntregaFinal+Rubilar
    ```
 
    Selecciona la rama correspondiente al proyecto:
@@ -73,8 +72,6 @@ Para el almacenamiento y gestion de la informacion se utilizo **Firebase** como 
 
 2. Para seleccionar diseños, ingresa a la biblioteca de iconos en [React Icons](https://react-icons.github.io/react-icons/).
 
-## Configuración de Rutas con React Router
-
 ## Crea y Configura un proyecto Firebase
 
 1. **Crea un proyecto en Firebase**.
@@ -89,13 +86,15 @@ Para el almacenamiento y gestion de la informacion se utilizo **Firebase** como 
    npm install firebase
    ```
 
-3. **Instala React Router**:
+## Configuración de Rutas con React Router
+
+1. **Instala React Router**:
 
    ```bash
    npm install react-router-dom
    ```
 
-4. **Define las rutas** para manejar la navegación entre páginas en `App.js`, asi como los detalles de producto y carrito.
+2. **Define las rutas** para manejar la navegación entre páginas en `App.js`, asi como los detalles de producto y carrito.
 
 ## Conclusión
 

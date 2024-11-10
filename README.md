@@ -13,8 +13,6 @@ Para el almacenamiento y gestion de la informacion se utilizo **Firebase** como 
   npm -v
   ```
 
-- **Firebase**: crea un proyecto en [Firebase](https://console.firebase.google.com/) para habilitar la base de datos.
-
 ## Instalación
 
 1. **Clona el repositorio**:
@@ -82,7 +80,7 @@ Para el almacenamiento y gestion de la informacion se utilizo **Firebase** como 
 1. **Crea un proyecto en Firebase**.
 
    ```bash
-   https://console.firebase.google.com/?hl=es-419
+   [Firebase](https://console.firebase.google.com/)
    ```
 
 2. **Instala Firebase**:

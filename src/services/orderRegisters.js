@@ -1,24 +1,8 @@
-import {
-  collection,
-  addDoc,
-  doc,
-  getDoc,
-  getFirestore,
-} from "firebase/firestore";
-import { initializeApp } from "firebase/app";
+// orderRegisters.js
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBfs53WvydMadA6j20dQ4MmxbNYzgkaWX4",
-  authDomain: "entrega-final-react-173ab.firebaseapp.com",
-  projectId: "entrega-final-react-173ab",
-  storageBucket: "entrega-final-react-173ab.appspot.com",
-  messagingSenderId: "583193565184",
-  appId: "1:583193565184:web:143728db6170c3d00460e5",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
+// Función para cargar una orden
 export const cargarOrden = async (orderData) => {
   try {
     const docRef = await addDoc(collection(db, "orders"), orderData);
@@ -28,16 +12,12 @@ export const cargarOrden = async (orderData) => {
   }
 };
 
-export const checkOrderExists = async (orderId) => {
+// Nueva función para obtener la orden por ID
+export const getOrderById = async (orderId) => {
   try {
     const docRef = doc(db, "orders", orderId);
     const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      return true;
-    } else {
-      return false;
-    }
+    return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
   } catch (error) {
     throw error;
   }

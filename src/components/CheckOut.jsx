@@ -1,12 +1,33 @@
-import { useLocation, useParams } from "react-router-dom";
+// CheckOut.jsx
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getOrderById } from "../services/orderRegisters";
 
 export default function CheckOut() {
-  const location = useLocation();
-  const { cartItems, totalProducts, totalPrice } = location.state || {};
   const { orderId } = useParams();
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!cartItems) {
-    return <p>No hay productos en la orden.</p>;
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const orderData = await getOrderById(orderId);
+        setOrder(orderData);
+      } catch (error) {
+        console.error("Error al obtener la orden:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrder();
+  }, [orderId]);
+
+  if (loading) {
+    return <p>Cargando...</p>;
+  }
+
+  if (!order) {
+    return <p>No se encontró la orden.</p>;
   }
 
   return (
@@ -14,14 +35,14 @@ export default function CheckOut() {
       <h2 className="summary-title">Resumen del Pedido</h2>
       <div className="checkout-summary">
         <div className="summary-code">
-          <h3 className="summary-subtt">Codigo del pedido: </h3>
-          <h3 className="summary-subtt">{orderId}</h3>
+          <h3 className="summary-subtt">Código del pedido:</h3>
+          <h3 className="summary-subtt">{order.id}</h3>
         </div>
 
         <div className="summary-total">
           <h3 className="summary-subtt">Productos:</h3>
           <ul>
-            {cartItems.map((item) => (
+            {order.items.map((item) => (
               <li key={item.id}>
                 <p>
                   {item.title} - {item.quantity} x ${item.price}
@@ -29,14 +50,19 @@ export default function CheckOut() {
               </li>
             ))}
           </ul>
-          <h3>Total de Productos: {totalProducts}</h3>
-          <h3>Total de la Compra: ${totalPrice.toFixed(2)}</h3>
+          <h3>Total de Productos: {order.totalProducts}</h3>
+          <h3>Total de la Compra: ${order.totalPrice.toFixed(2)}</h3>
         </div>
 
         <div className="summary-customer">
-          <h3 className="summary-subtt">Informacion del comprador:</h3>
+          <h3 className="summary-subtt">Información del comprador:</h3>
+          <p>
+            Nombre: {order.customerData.nombre} {order.customerData.apellidos}
+          </p>
+          <p>Teléfono: {order.customerData.telefono}</p>
+          <p>Email: {order.customerData.email}</p>
         </div>
-        <h2 className="summary-close">Gracias por su Compra</h2>
+        <h2 className="summary-close">Gracias por su compra</h2>
       </div>
     </div>
   );

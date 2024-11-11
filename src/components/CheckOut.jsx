@@ -36,7 +36,9 @@ export default function CheckOut() {
       <div className="checkout-summary">
         <div className="summary-code">
           <h3 className="summary-subtt">Código del pedido:</h3>
-          <h3 className="summary-subtt">{order.id}</h3>
+          <h3 className="summary-subtt">
+            <span>{order.id}</span>
+          </h3>
         </div>
 
         <div className="summary-total">
@@ -45,13 +47,15 @@ export default function CheckOut() {
             {order.items.map((item) => (
               <li key={item.id}>
                 <p>
-                  {item.title} - {item.quantity} x ${item.price}
+                  <span>
+                    {item.title} - {item.quantity} x ${item.price}
+                  </span>
                 </p>
               </li>
             ))}
           </ul>
-          <h3>Total de Productos: {order.totalProducts}</h3>
-          <h3>Total de la Compra: ${order.totalPrice.toFixed(2)}</h3>
+          <p>Total de Productos: {order.totalProducts}</p>
+          <p>Total de la Compra: ${order.totalPrice.toFixed(2)}</p>
         </div>
 
         <div className="summary-customer">

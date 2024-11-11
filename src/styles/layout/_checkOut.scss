@@ -9,6 +9,10 @@
   }
   .summary-subtt {
     font-size: 2rem;
+    text-transform: uppercase;
+    span {
+      color: blueviolet;
+    }
   }
   .checkout-summary {
     align-items: center;
@@ -23,13 +27,23 @@
     border: #d5d8dc 0.5px solid;
     border-radius: 1rem;
     box-shadow: 9px 9px 10px -7px rgba(28, 40, 51, 1);
-    .summary-code {
-    }
-
     .summary-total {
+      padding: 2rem 0 2rem 0;
+      p {
+        padding-top: 1rem;
+        span {
+          font-weight: 800;
+        }
+      }
     }
 
     .summary-customer {
+      p {
+        padding-top: 1rem;
+        span {
+          font-weight: 700;
+        }
+      }
     }
   }
 }
